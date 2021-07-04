@@ -1,7 +1,7 @@
 import Title from '../../shared/components/Title/Title'
 import BasicLayout from '../../shared/containers/BasicLayout/BasicLayout'
 
-export default function Home() {
+export default function SearchPage() {
   return (
     <BasicLayout>
       <Title>NASA Search</Title>
