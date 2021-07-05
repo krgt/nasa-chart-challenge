@@ -6,8 +6,10 @@ const CustomTooltip: React.FC<TooltipProps<string, string>> = ({ active, payload
     return <Image
       alt='Nasa Image'
       src={payload[0].payload.href}
-      width='64'
-      height='64'
+      width='128'
+      height='128'
+      placeholder='blur'
+      blurDataURL='/shimmer.svg'
     />
   }
   return null
