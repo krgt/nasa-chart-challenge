@@ -14,15 +14,16 @@ const FormikInput: React.FC<FormikInputProps> = (props) => {
   const [field, meta] = useField(props.name);
   return (
     <>
-      <input
+      <Input
         type='text'
         aria-label={props.label}
         {...field}
         {...props}
        />
-      {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
-      ) : null}
+      {meta.touched && meta.error
+        ? (<div className="error">{meta.error}</div>)
+        : null
+      }
     </>
   )
 }
