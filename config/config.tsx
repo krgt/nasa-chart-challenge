@@ -1,6 +1,7 @@
 const config = {
   routePaths: {
-    nasaSearch: 'nasa-search'
+    nasaSearch: '/nasa-search',
+    nasaSearchResults: '/nasa-search-results'
   },
   apiPaths: {
     nasaApi: ''

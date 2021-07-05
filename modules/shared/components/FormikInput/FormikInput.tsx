@@ -7,16 +7,24 @@ const Input = styled.input`
 
 export type FormikInputProps = {
   name: string
+  label: string
 }
 
 const FormikInput: React.FC<FormikInputProps> = (props) => {
   const [field, meta] = useField(props.name);
   return (
     <>
-      <input {...field} {...props} />
+      <input
+        type='text'
+        aria-label={props.label}
+        {...field}
+        {...props}
+       />
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
       ) : null}
     </>
-  );
+  )
 }
+
+export default FormikInput
