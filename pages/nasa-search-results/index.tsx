@@ -4,11 +4,12 @@ import ResultsPage from '../../modules/nasaSearch/pages/ResultsPage'
 import { getNasaSearch, NasaAsset } from '../../modules/nasaSearch/services/nasaSearchService'
 
 export type NasaSearchResultsProps = {
-  nasaAssets?: Array<NasaAsset>
+  nasaAssets: Array<NasaAsset>
+  error?: string
 }
 
-const NasaSearchResults: React.FC<NasaSearchResultsProps> = ({ nasaAssets }) => {
-  if (nasaAssets) {
+const NasaSearchResults: React.FC<NasaSearchResultsProps> = ({ nasaAssets, error }) => {
+  if (nasaAssets && !error) {
     return <ResultsPage nasaAssets={nasaAssets}/>
   } else {
     return <DefaultErrorPage statusCode={500} />
@@ -17,13 +18,22 @@ const NasaSearchResults: React.FC<NasaSearchResultsProps> = ({ nasaAssets }) => 
 
 export const getServerSideProps: GetServerSideProps = async context => {
   let nasaAssets: Array<NasaAsset> = []
-  if (typeof context.query.query === 'string') {
-    nasaAssets = await getNasaSearch(context.query.query)
+  let error: string | null = null
+
+  try {
+    if (typeof context.query.query === 'string') {
+      nasaAssets = await getNasaSearch(context.query.query)
+    }
+
+  } catch (err) {
+    console.error(err)
+    error = 'Internal server error'
   }
 
   return {
     props: {
-      nasaAssets
+      nasaAssets,
+      error
     }
   }
 }
