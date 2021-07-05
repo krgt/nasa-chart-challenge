@@ -13,7 +13,7 @@ const NasaSearchForm: React.FC = () => {
       initialValues={{
         query: ''
       }}
-      onSubmit={(values, actions) => {
+      onSubmit={(values) => {
         router.push(`${routePaths.nasaSearchResults}?query=${values.query}`)
       }}
     >
