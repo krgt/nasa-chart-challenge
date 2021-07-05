@@ -25,7 +25,7 @@ type NasaSearchResult = {
 }
 
 export type NasaAsset = {
-  date: Date
+  date: string
   href: string
 }
 
@@ -38,7 +38,7 @@ export async function getNasaSearch(query: string): Promise<Array<NasaAsset>> {
     const date = new Date(item.data[0].date_created)
     const dateString = format(new Date(item.data[0].date_created), 'MM/dd/yyyy')
     assetsDictionary[dateString] = {
-      date: date,
+      date: date.toJSON(),
       href: item.links[0].href
     }
   })
@@ -47,6 +47,6 @@ export async function getNasaSearch(query: string): Promise<Array<NasaAsset>> {
   return Object.keys(assetsDictionary)
     .map(key => assetsDictionary[key])
     .sort((assetA, assetB) => {
-      return differenceInDays(assetA.date, assetB.date)
+      return differenceInDays(new Date(assetA.date), new Date(assetB.date))
     })
 }
