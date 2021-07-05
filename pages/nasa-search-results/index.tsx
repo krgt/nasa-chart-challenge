@@ -1,6 +1,6 @@
 import { GetServerSideProps } from 'next'
 import ResultsPage from '../../modules/nasaSearch/pages/ResultsPage'
-import axios from 'axios'
+import { getNasaSearch } from '../../modules/nasaSearch/services/nasaSearchService'
 
 export type NasaSearchResultsProps = {
 }
@@ -12,8 +12,10 @@ const NasaSearchResults: React.FC<NasaSearchResultsProps> = () => {
 }
 
 export const getServerSideProps: GetServerSideProps = async context => {
-  const response = await axios.get(`https://images-api.nasa.gov/search?&media_type=image&q=${context.query.query}`)
-  console.log(response.data)
+  if (typeof context.query.query === 'string') {
+    const nasaAssets = await getNasaSearch(context.query.query)
+    console.log(nasaAssets)
+  }
   return {
     props: {
     }

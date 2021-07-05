@@ -4,7 +4,7 @@ const config = {
     nasaSearchResults: '/nasa-search-results'
   },
   apiPaths: {
-    nasaApi: ''
+    nasaApi: 'https://images-api.nasa.gov/search'
   }
 }
 
