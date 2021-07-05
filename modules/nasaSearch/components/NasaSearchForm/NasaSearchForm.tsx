@@ -1,7 +1,7 @@
 import { Formik, Form, FormikProps } from "formik";
 import FormikInput from "../../../shared/components/FormikInput/FormikInput"
 import { useRouter } from 'next/router'
-import config from "../../../../config/config";
+import config from "../../../shared/config/config";
 
 const { routePaths } = config
 
